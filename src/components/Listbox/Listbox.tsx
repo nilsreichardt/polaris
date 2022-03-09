@@ -75,6 +75,7 @@ export function Listbox({
   const [loading, setLoading] = useState<string>();
   const [currentActiveOption, setCurrentActiveOption] =
     useState<NavigableOption>();
+  const [navItems, setNavItems] = useState(getNavigableOptions());
   const {
     listboxId,
     textFieldLabelId,
@@ -175,6 +176,7 @@ export function Listbox({
     (type?: ArrowKeys) => {
       const isUp = type === 'up';
       const navItems = getNavigableOptions();
+      setNavItems(navItems);
       const firstSelectedItemIndex = navItems.findIndex((item) => {
         return item.getAttribute('aria-selected');
       });
@@ -237,11 +239,24 @@ export function Listbox({
 
   useEffect(() => {
     if (currentActiveOption) {
+      const newNavItems = getNavigableOptions();
+      if (newNavItems.length !== navItems.length) {
+        // update current active option when listbox items change on filter
+        return handleChangeActiveOption();
+      }
+
       setActiveOptionId!(currentActiveOption.domId);
-    } else {
-      setInitialActiveOption();
+      return;
     }
-  }, [currentActiveOption, setActiveOptionId, setInitialActiveOption]);
+
+    setInitialActiveOption();
+  }, [
+    currentActiveOption,
+    setActiveOptionId,
+    setInitialActiveOption,
+    children,
+    navItems,
+  ]);
 
   function handleArrow(type: ArrowKeys, evt: KeyboardEvent) {
     evt.preventDefault();
