@@ -25,6 +25,7 @@ export interface CellProps {
   colSpan?: number;
   setRef?: (ref: HTMLTableCellElement | null) => void;
   stickyHeadingCell?: boolean;
+  hovered?: boolean;
 }
 
 export function Cell({
@@ -44,6 +45,7 @@ export function Cell({
   colSpan,
   setRef = () => {},
   stickyHeadingCell = false,
+  hovered = false,
 }: CellProps) {
   const i18n = useI18n();
   const numeric = contentType === 'numeric';
@@ -58,6 +60,7 @@ export function Cell({
     numeric && styles['Cell-numeric'],
     sortable && styles['Cell-sortable'],
     sorted && styles['Cell-sorted'],
+    hovered && styles['Cell-hovered'],
   );
 
   const headerClassName = classNames(
