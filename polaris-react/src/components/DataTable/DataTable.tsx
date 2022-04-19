@@ -486,6 +486,7 @@ class DataTableInner extends PureComponent<CombinedProps, DataTableState> {
 
     this.stickyHeaderScrolling(event);
   };
+
   private onHover = (row: number) => {
     this.setState({rowHovered: row});
   };
