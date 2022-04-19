@@ -12,6 +12,10 @@ Use [the changelog guidelines](/documentation/Versioning%20and%20changelog.md) t
 - Added the ability to disable specific dates in the `DatePicker`, to go along with date ranges ([#5356](https://github.com/Shopify/polaris/pull/5356))
 
 - Added breakpoint CSS custom properties and SCSS media conditions ([#5558](https://github.com/Shopify/polaris/pull/5558))
+- Added support for setting a `ReactNode` on the `PageActions` `secondaryActions` prop ([#5495](https://github.com/Shopify/polaris/pull/5495))
+
+- Added support for NodeJS v14 ([#5551](https://github.com/Shopify/polaris/pull/5551))
+- Added an optional `fixedFirstColumn` prop to the `DataTable` ([#5539](https://github.com/Shopify/polaris/pull/5539))
 
 ### Bug fixes
 
