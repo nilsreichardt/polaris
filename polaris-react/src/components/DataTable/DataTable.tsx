@@ -529,7 +529,7 @@ class DataTableInner extends PureComponent<CombinedProps, DataTableState> {
     }
   };
 
-  private onHover = (row: number) => {
+  private handleHover = (row?: number) => () => {
     this.setState({rowHovered: row});
   };
 
