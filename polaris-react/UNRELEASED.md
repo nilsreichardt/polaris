@@ -15,6 +15,8 @@ Use [the changelog guidelines](/documentation/Versioning%20and%20changelog.md) t
 
 ### Bug fixes
 
+- Updated border radius on `IndexTable` scroll container ([#5242](https://github.com/Shopify/polaris/pull/5242))
+
 ### Documentation
 
 ### Development workflow
