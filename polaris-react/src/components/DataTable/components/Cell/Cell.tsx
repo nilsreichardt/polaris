@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {FocusEventHandler} from 'react';
 import {CaretUpMinor, CaretDownMinor} from '@shopify/polaris-icons';
 
 import {classNames, variationName} from '../../../../utilities/css';
@@ -26,10 +26,9 @@ export interface CellProps {
   setRef?: (ref: HTMLTableCellElement | null) => void;
   stickyHeadingCell?: boolean;
   hovered?: boolean;
-  firstColWidth?: number;
-  visibility?: boolean;
-  handleFocus?: () => void;
-  isFixedFirstColumn: boolean;
+  handleFocus?: FocusEventHandler;
+  isFixedFirstColumn?: boolean;
+  hasFixedFirstColumn?: boolean;
 }
 
 export function Cell({
@@ -52,10 +51,10 @@ export function Cell({
   stickyHeadingCell = false,
   hovered = false,
   handleFocus = () => {},
+  hasFixedFirstColumn = false,
 }: CellProps) {
   const i18n = useI18n();
   const numeric = contentType === 'numeric';
-  const cellRef = useRef(null);
   const className = classNames(
     styles.Cell,
     styles[`Cell-${variationName('verticalAlign', verticalAlign)}`],
@@ -93,14 +92,13 @@ export function Cell({
     </span>
   );
 
-  const focusable = isFixedFirstColumn || !firstColumn;
+  const focusable = isFixedFirstColumn || !firstColumn || !hasFixedFirstColumn;
 
   const sortableHeadingContent = (
     <button
       className={headerClassName}
       onClick={onSort}
       onFocus={handleFocus}
-      ref={cellRef}
       tabIndex={focusable ? 0 : -1}
     >
       {iconMarkup}
